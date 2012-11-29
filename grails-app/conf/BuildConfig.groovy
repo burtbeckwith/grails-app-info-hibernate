@@ -29,7 +29,8 @@ grails.project.dependency.resolution = {
 	plugins {
 
 		compile ':app-info:1.0.2'
-		compile ":hibernate:$grailsVersion"
+
+		runtime ":hibernate:$grailsVersion"
 
 		build(':release:2.1.0', ':rest-client-builder:1.0.2') {
 			export = false
