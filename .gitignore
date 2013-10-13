@@ -1,7 +1,8 @@
-*.zip
-/plugin.xml
 *.log
-target
+/target
+/docs
+grails-app-info-hibernate-*.zip
+grails-app-info-hibernate-*.zip.sha1
+plugin.xml
 .settings
 web-app
-/docs
