@@ -1,6 +1,6 @@
 <#foreach queryKey in cfg.namedSQLQueries.keySet()>
 <#assign queryDef = cfg.namedSQLQueries.get(queryKey)>
-    <sql-query 
+    <sql-query
         name="${queryKey}"
 <#if queryDef.flushMode?exists>
         flush-mode="${queryDef.flushMode.toString().toLowerCase()}"
@@ -16,12 +16,12 @@
 </#if>
 <#if queryDef.timeout?exists>
         timeout="${queryDef.timeout?c}"
-</#if>    
+</#if>
 >
 <#foreach tableName in queryDef.querySpaces>
 	    <synchronize table="${tableName}" />
 </#foreach>
       <![CDATA[${queryDef.queryString.trim()}]]>
     </sql-query>
-    
+
 </#foreach>

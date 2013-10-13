@@ -90,7 +90,7 @@ ${c2h.getHibernateTypeName(compProperty)?replace(".","_dot_")} [
 <@dumpComponent property/>
 </#if>
 
-</#if>  
+</#if>
 
 </#foreach>
 </#macro>

@@ -1,4 +1,4 @@
-<#foreach queryKey in cfg.namedQueries.keySet()><#assign queryDef = cfg.namedQueries.get(queryKey)>    <query 
+<#foreach queryKey in cfg.namedQueries.keySet()><#assign queryDef = cfg.namedQueries.get(queryKey)>    <query
         name="${queryKey}"
 <#if queryDef.flushMode?exists>
         flush-mode="${queryDef.flushMode.toString().toLowerCase()}"
@@ -16,5 +16,5 @@
         timeout="${queryDef.timeout?c}"
 </#if>    >
         <![CDATA[${queryDef.queryString.trim()}]]>
-    </query> 
+    </query>
 </#foreach>

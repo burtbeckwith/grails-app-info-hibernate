@@ -4,5 +4,5 @@
 <#foreach filterParaName in filterDef.parameterNames>
 	<filter-param name="${filterParaName}" type="${filterDef.getParameterType(filterParaName).name}" />
 </#foreach>
-    </filter-def>    
+    </filter-def>
 </#foreach>

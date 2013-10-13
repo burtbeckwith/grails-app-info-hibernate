@@ -155,7 +155,7 @@ class HibernateControllerMixin {
 
 	def hibernateEntityStatistics() {
 		String entity = params.entity
-		
+
 		render view: '/appinfo/hibernateEntityStatistics',
 		       plugin: 'appInfoHibernate',
 		       model: [entity: entity,
