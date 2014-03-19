@@ -7,9 +7,9 @@ import org.springframework.util.Assert
  */
 class FakeDocFile {
 
-	private final String _name
-	private final FakeDocFolder _folder
-	private final File _file
+	final String name
+	final FakeDocFolder folder
+	final File file
 
 	/**
 	 * Constructor.
@@ -21,30 +21,15 @@ class FakeDocFile {
 	FakeDocFile(String name, FakeDocFolder folder) {
 		Assert.notNull(name, 'The name cannot be null')
 		Assert.notNull(folder, 'The parent folder cannot be null')
-		_name = name
-		_folder = folder
-		_file = new File(folder.file, name)
+		this.name = name
+		this.folder = folder
+		file = new File(folder.file, name)
 	}
-
-	/**
-	 * @return the name of the file.
-	 */
-	String getName() { _name }
-
-	/**
-	 * @return the DocFolder.
-	 */
-	FakeDocFolder getFolder() { _folder }
-
-	/**
-	 * @return the File.
-	 */
-	File getFile() { _file }
 
 	/**
 	 * @return a list with the folders from root.
 	 */
-	List<FakeDocFolder> getPathFolders() { _folder.pathFolders }
+	List<FakeDocFolder> getPathFolders() { folder.pathFolders }
 
 	/**
 	 * Return a path-like reference to this file starting on the specified
@@ -85,7 +70,7 @@ class FakeDocFile {
 
 		StringBuilder ref = new StringBuilder()
 
-		FakeDocFolder parentFolder = _folder
+		FakeDocFolder parentFolder = folder
 		while (parentFolder) {
 			if (tgtFileFolders.contains(parentFolder)) {
 				ref.append target.buildRefFromFolder(parentFolder)
@@ -100,5 +85,5 @@ class FakeDocFile {
 	}
 
 	@Override
-	String toString() { _name }
+	String toString() { name }
 }

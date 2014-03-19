@@ -10,22 +10,22 @@ class FakeDocFolder {
 	/**
 	 * The name of the folder.
 	 */
-	private String _name
+	String name
 
 	/**
 	 * The parent folder.
 	 */
-	private FakeDocFolder _parent
+	FakeDocFolder parent
 
 	/**
 	 * The File instance.
 	 */
-	private final File _file
+	final File file
 
 	/**
 	 * Holds a list with the folders that are between this folder and root.
 	 */
-	private final List<FakeDocFolder> _pathFolders = []
+	final List<FakeDocFolder> pathFolders = []
 
 	/**
 	 * Constructor for the root folder.
@@ -34,8 +34,8 @@ class FakeDocFolder {
 	 */
 	FakeDocFolder(File root) {
 		Assert.notNull root, 'Root File cannot be null'
-		_file = root
-		_pathFolders.add(this)
+		file = root
+		pathFolders << this
 	}
 
 	/**
@@ -48,36 +48,16 @@ class FakeDocFolder {
 		Assert.notNull name, 'Name cannot be null'
 		Assert.notNull parent, 'Parent folder cannot be null'
 
-		_name = name
-		_parent = parent
-		_file = new File(_parent.file, _name)
+		this.name = name
+		this.parent = parent
+		file = new File(parent.file, name)
 
-		if (_parent) {
-			_pathFolders.addAll(_parent.pathFolders)
-			_pathFolders.add(this)
+		if (parent) {
+			pathFolders.addAll(parent.pathFolders)
+			pathFolders << this
 		}
 	}
 
-	/**
-	 * @return the name of this folder.
-	 */
-	String getName() { _name }
-
-	/**
-	 * @return the parent folder.
-	 */
-	FakeDocFolder getParent() { _parent }
-
-	/**
-	 * @return the File instance.
-	 */
-	File getFile() { _file }
-
-	/**
-	 * @return a list with the folders from root.
-	 */
-	List<FakeDocFolder> getPathFolders() { _pathFolders }
-
 	@Override
-	String toString() { _name }
+	String toString() { name }
 }

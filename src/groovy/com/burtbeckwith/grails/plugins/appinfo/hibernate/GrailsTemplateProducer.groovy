@@ -13,26 +13,27 @@ import org.w3c.tidy.Tidy
  */
 class GrailsTemplateProducer extends TemplateProducer {
 
-	private final TemplateHelper _th
-	private final Tidy _tidy = new Tidy()
-	private final Map<String, String> _results = [:]
-	private final boolean _prettyPrint
+	private final TemplateHelper th
+	private final Tidy tidy = new Tidy()
+	private final Map<String, String> results = [:]
+	private final boolean prettyPrint
 
 	GrailsTemplateProducer(TemplateHelper th, ArtifactCollector ac, boolean prettyPrint) {
 		super(th, ac)
-		_th = th
-		_prettyPrint = prettyPrint
-		def properties = [indent: 'auto',
-		                  'indent-spaces': '4',
-		                  wrap: '180',
-		                  markup: 'yes',
-		                  clean: 'yes',
-		                  'output-xml': 'yes',
-		                  'input-xml': 'yes',
-		                  'show-warnings': 'yes',
-		                  'trim-empty-elements': 'yes']
-		_tidy.setConfigurationFromProps(properties as Properties)
-		_tidy.errout = new PrintWriter(new NullWriter())
+		this.th = th
+		this.prettyPrint = prettyPrint
+		def properties = [
+			indent: 'auto',
+			'indent-spaces': '4',
+			wrap: '180',
+			markup: 'yes',
+			clean: 'yes',
+			'output-xml': 'yes',
+			'input-xml': 'yes',
+			'show-warnings': 'yes',
+			'trim-empty-elements': 'yes']
+		tidy.setConfigurationFromProps(properties as Properties)
+		tidy.errout = new PrintWriter(new NullWriter())
 	}
 
 	@Override
@@ -40,24 +41,24 @@ class GrailsTemplateProducer extends TemplateProducer {
 		String fileType = outputFile.name
 		fileType = fileType.substring(fileType.indexOf('.') + 1)
 
-		additionalContext.each { key, value -> _th.putInContext(key, value) }
+		additionalContext.each { key, value -> th.putInContext(key, value) }
 
 		StringWriter stringWriter = new StringWriter()
 		BufferedWriter writer = new BufferedWriter(stringWriter)
-		_th.processTemplate templateName, writer, null
+		th.processTemplate templateName, writer, null
 
-		additionalContext.each { key, value -> _th.removeFromContext(key, value) }
+		additionalContext.each { key, value -> th.removeFromContext(key, value) }
 
 		writer.flush()
 		String result = stringWriter.toString()
 
-		if (_prettyPrint) {
+		if (prettyPrint) {
 			Writer printed = new StringWriter()
-			_tidy.parse new StringReader(result), printed
+			tidy.parse new StringReader(result), printed
 			result = printed.toString()
 		}
 
-		_results.put outputFile.path, result
+		results.put outputFile.path, result
 	}
 
 	@Override
@@ -65,5 +66,5 @@ class GrailsTemplateProducer extends TemplateProducer {
 		produce additionalContext, templateName, destination, identifier
 	}
 
-	Map<String, String> getResults() { _results }
+	Map<String, String> getResults() { results }
 }

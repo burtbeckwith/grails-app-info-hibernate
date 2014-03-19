@@ -13,7 +13,7 @@ import org.hibernate.util.StringHelper
  */
 class GrailsHibernateMappingExporter extends GenericExporter {
 
-	private GrailsTemplateProducer _producer
+	private GrailsTemplateProducer producer
 
 	HibernateMappingGlobalSettings globalSettings = new HibernateMappingGlobalSettings()
 
@@ -29,7 +29,7 @@ class GrailsHibernateMappingExporter extends GenericExporter {
 		setupTemplates()
 		super.setupContext()
 		getTemplateHelper().putInContext('hmgs', globalSettings)
-		_producer = new GrailsTemplateProducer(templateHelper, artifactCollector, true)
+		producer = new GrailsTemplateProducer(templateHelper, artifactCollector, true)
 		doStart()
 	}
 
@@ -46,7 +46,7 @@ class GrailsHibernateMappingExporter extends GenericExporter {
 
 	Map<String, String> export() {
 		start()
-		_producer.results
+		producer.results
 	}
 
 	@Override
@@ -57,7 +57,7 @@ class GrailsHibernateMappingExporter extends GenericExporter {
 		if (filename.endsWith('.java') && filename.indexOf('$') > -1) {
 			log.warn("Filename for ${getClassNameForFile(element)} contains a \$. Innerclass generation is not supported.")
 		}
-		_producer.produce additionalContext, templateName, new File(filename), templateName
+		producer.produce additionalContext, templateName, new File(filename), templateName
 	}
 
 	protected String getClassNameForFile(POJOClass element) {
