@@ -1,6 +1,6 @@
 class AppInfoHibernateGrailsPlugin {
 
-	String version = '0.4'
+	String version = '0.4.1'
 	String grailsVersion = '2.0 > *'
 	String author = 'Burt Beckwith'
 	String authorEmail = 'burt@burtbeckwith.com'
