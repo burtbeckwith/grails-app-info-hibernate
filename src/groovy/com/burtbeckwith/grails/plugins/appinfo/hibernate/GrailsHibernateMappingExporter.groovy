@@ -6,7 +6,7 @@ import org.hibernate.tool.hbm2x.GenericExporter
 import org.hibernate.tool.hbm2x.HibernateMappingGlobalSettings
 import org.hibernate.tool.hbm2x.TemplateHelper
 import org.hibernate.tool.hbm2x.pojo.POJOClass
-import org.hibernate.util.StringHelper
+import org.hibernate.internal.util.StringHelper
 
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>

@@ -10,7 +10,7 @@ import org.hibernate.stat.Statistics
 import org.hibernate.tool.hbm2x.pojo.POJOClass
 
 import org.springframework.beans.PropertyAccessorFactory
-import org.springframework.orm.hibernate3.LocalSessionFactoryBean
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean
 
 import com.burtbeckwith.grails.plugins.appinfo.hibernate.GrailsDocExporter
 import com.burtbeckwith.grails.plugins.appinfo.hibernate.GrailsHibernateMappingExporter
